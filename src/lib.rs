@@ -39,7 +39,7 @@ impl fmt::Display for Universe {
 
 #[wasm_bindgen]
 impl Universe {
-    fn tick (&mut self) {
+    pub fn tick (&mut self) {
         let mut next = self.cells.clone();
 
         for row in 0..self.height {
@@ -52,7 +52,7 @@ impl Universe {
                     (Cell::Alive, x) if x < 2 => Cell::Dead,
                     (Cell::Alive, 2) | (Cell::Alive, 3) => Cell::Alive,
                     (Cell::Alive, x) if x > 3 => Cell::Dead,
-                    (Cell::Dead, 3) => (Cell::Alive),
+                    (Cell::Dead, 3) => Cell::Alive,
                     (otherwise, _) => otherwise,
                 };
 
